@@ -31,6 +31,18 @@ metadata:
 {{- if or $addonVersion $.Values.secretName $.Values.configSecret.name (($addon).configSecret).name }}
 spec:
 {{- end}}
+{{- if $.addon.manager }}
+  manager:
+  {{- if $.addon.manager.metrics }}
+    metrics:
+    {{- if $.addon.manager.metrics.insecureDiagnostics }}
+      insecureDiagnostics: {{- $.addon.manager.metrics.insecureDiagnostics }}
+    {{- end }}
+    {{- if $.addon.manager.metrics.diagnosticsAddress }}
+      diagnosticsAddress: {{- $.addon.manager.metrics.diagnosticsAddress }}
+    {{- end }}
+  {{- end }}
+{{- end }}
 {{- if $addonVersion }}
   version: {{ $addonVersion }}
 {{- end }}

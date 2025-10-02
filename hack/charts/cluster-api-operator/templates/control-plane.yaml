@@ -34,18 +34,23 @@ spec:
 {{- if $controlPlaneVersion }}
   version: {{ $controlPlaneVersion }}
 {{- end }}
-{{- if $.Values.manager }}
-{{- if hasKey $.Values.manager.featureGates $controlPlaneName }}
+{{- if $.controlPlane.manager }}
   manager:
-{{- range $key, $value := $.Values.manager.featureGates }}
-  {{- if eq $key $controlPlaneName }}
+  {{- if $.controlPlane.manager.featureGates }}
     featureGates:
-    {{- range $k, $v := $value }}
-      {{ $k }}: {{ $v }}
+    {{- range $key, $value := $.controlPlane.manager.featureGates }}
+      {{ $key }}: {{ $value }}
     {{- end }}
   {{- end }}
-{{- end }}
-{{- end }}
+  {{- if $.controlPlane.manager.metrics }}
+    metrics:
+    {{- if $.controlPlane.manager.metrics.insecureDiagnostics }}
+      insecureDiagnostics: {{- $.controlPlane.manager.metrics.insecureDiagnostics }}
+    {{- end }}
+    {{- if $.controlPlane.manager.metrics.diagnosticsAddress }}
+      diagnosticsAddress: {{- $.controlPlane.manager.metrics.diagnosticsAddress }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 {{- if (default (($controlPlane).configSecret).name (($.Values).configSecret).name) }}
 {{- include "capi-operator.configSecret" (dict "ROOT" $ "ARGUMENT" $controlPlane) | nindent 2 }}

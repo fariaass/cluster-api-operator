@@ -61,14 +61,23 @@ metadata:
     "argocd.argoproj.io/sync-wave": "2"
 {{- with .Values.configSecret }}
 spec:
-{{- if $.Values.manager }}
-{{- if and $.Values.manager.featureGates $.Values.manager.featureGates.kubeadm }}
+{{- if $.Values.controlPlane.kubeadm.manager }}
   manager:
+  {{- if $.Values.controlPlane.kubeadm.manager.featureGates }}
     featureGates:
-    {{- range $key, $value := $.Values.manager.featureGates.kubeadm }}
+    {{- range $key, $value := $.Values.controlPlane.kubeadm.manager.featureGates }}
       {{ $key }}: {{ $value }}
     {{- end }}
-{{- end }}
+  {{- end }}
+  {{- if $$.Values.controlPlane.kubeadm.manager.metrics }}
+    metrics:
+    {{- if $.Values.controlPlane.kubeadm.manager.metrics.insecureDiagnostics }}
+      insecureDiagnostics: {{- $.Values.controlPlane.kubeadm.manager.metrics.insecureDiagnostics }}
+    {{- end }}
+    {{- if $.Values.controlPlane.kubeadm.manager.metrics.diagnosticsAddress }}
+      diagnosticsAddress: {{- $.Values.controlPlane.kubeadm.manager.metrics.diagnosticsAddress }}
+    {{- end }}
+  {{- end }}
 {{- end }}
   configSecret:
     name: {{ .name }}
