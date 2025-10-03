@@ -34,21 +34,21 @@ spec:
 {{- if $controlPlaneVersion }}
   version: {{ $controlPlaneVersion }}
 {{- end }}
-{{- if $.controlPlane.manager }}
+{{- if $controlPlane.manager }}
   manager:
-  {{- if $.controlPlane.manager.featureGates }}
+  {{- if $controlPlane.manager.featureGates }}
     featureGates:
-    {{- range $key, $value := $.controlPlane.manager.featureGates }}
+    {{- range $key, $value := $controlPlane.manager.featureGates }}
       {{ $key }}: {{ $value }}
     {{- end }}
   {{- end }}
-  {{- if $.controlPlane.manager.metrics }}
+  {{- if $controlPlane.manager.metrics }}
     metrics:
-    {{- if $.controlPlane.manager.metrics.insecureDiagnostics }}
-      insecureDiagnostics: {{- $.controlPlane.manager.metrics.insecureDiagnostics }}
+    {{- if $controlPlane.manager.metrics.insecureDiagnostics }}
+      insecureDiagnostics: {{- $controlPlane.manager.metrics.insecureDiagnostics }}
     {{- end }}
-    {{- if $.controlPlane.manager.metrics.diagnosticsAddress }}
-      diagnosticsAddress: {{- $.controlPlane.manager.metrics.diagnosticsAddress }}
+    {{- if $controlPlane.manager.metrics.diagnosticsAddress }}
+      diagnosticsAddress: {{- $controlPlane.manager.metrics.diagnosticsAddress }}
     {{- end }}
   {{- end }}
 {{- end }}

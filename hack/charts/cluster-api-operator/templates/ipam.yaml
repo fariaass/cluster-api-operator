@@ -34,21 +34,21 @@ spec:
 {{- if $ipamVersion }}
   version: {{ $ipamVersion }}
 {{- end }}
-{{- if $.ipam.manager }}
+{{- if $ipam.manager }}
   manager:
-  {{- if $.ipam.manager.featureGates }}
+  {{- if $ipam.manager.featureGates }}
     featureGates:
-    {{- range $key, $value := $.ipam.manager.featureGates }}
+    {{- range $key, $value := $ipam.manager.featureGates }}
       {{ $key }}: {{ $value }}
     {{- end }}
   {{- end }}
-  {{- if $.ipam.manager.metrics }}
+  {{- if $ipam.manager.metrics }}
     metrics:
-    {{- if $.ipam.manager.metrics.insecureDiagnostics }}
-      insecureDiagnostics: {{- $.ipam.manager.metrics.insecureDiagnostics }}
+    {{- if $ipam.manager.metrics.insecureDiagnostics }}
+      insecureDiagnostics: {{- $ipam.manager.metrics.insecureDiagnostics }}
     {{- end }}
-    {{- if $.ipam.manager.metrics.diagnosticsAddress }}
-      diagnosticsAddress: {{- $.ipam.manager.metrics.diagnosticsAddress }}
+    {{- if $ipam.manager.metrics.diagnosticsAddress }}
+      diagnosticsAddress: {{- $ipam.manager.metrics.diagnosticsAddress }}
     {{- end }}
   {{- end }}
 {{- end }}

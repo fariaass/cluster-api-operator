@@ -31,15 +31,15 @@ metadata:
 {{- if or $bootstrapVersion $.Values.configSecret.name (($bootstrap).configSecret).name }}
 spec:
 {{- end}}
-{{- if $.bootstrap.manager }}
+{{- if $bootstrap.manager }}
   manager:
-  {{- if $.bootstrap.manager.metrics }}
+  {{- if $bootstrap.manager.metrics }}
     metrics:
-    {{- if $.bootstrap.manager.metrics.insecureDiagnostics }}
-      insecureDiagnostics: {{- $.bootstrap.manager.metrics.insecureDiagnostics }}
+    {{- if $bootstrap.manager.metrics.insecureDiagnostics }}
+      insecureDiagnostics: {{- $bootstrap.manager.metrics.insecureDiagnostics }}
     {{- end }}
-    {{- if $.bootstrap.manager.metrics.diagnosticsAddress }}
-      diagnosticsAddress: {{- $.bootstrap.manager.metrics.diagnosticsAddress }}
+    {{- if $bootstrap.manager.metrics.diagnosticsAddress }}
+      diagnosticsAddress: {{- $bootstrap.manager.metrics.diagnosticsAddress }}
     {{- end }}
   {{- end }}
 {{- end }}

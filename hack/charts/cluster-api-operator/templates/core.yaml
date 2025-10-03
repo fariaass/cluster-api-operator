@@ -34,21 +34,21 @@ spec:
 {{- if $coreVersion }}
   version: {{ $coreVersion }}
 {{- end }}
-{{- if $.core.manager }}
+{{- if $core.manager }}
   manager:
-  {{- if $.core.manager.featureGates }}
+  {{- if $core.manager.featureGates }}
     featureGates:
-    {{- range $key, $value := $.core.manager.featureGates }}
+    {{- range $key, $value := $core.manager.featureGates }}
       {{ $key }}: {{ $value }}
     {{- end }}
   {{- end }}
-  {{- if $.core.manager.metrics }}
+  {{- if $core.manager.metrics }}
     metrics:
-    {{- if $.core.manager.metrics.insecureDiagnostics }}
-      insecureDiagnostics: {{- $.core.manager.metrics.insecureDiagnostics }}
+    {{- if $core.manager.metrics.insecureDiagnostics }}
+      insecureDiagnostics: {{- $core.manager.metrics.insecureDiagnostics }}
     {{- end }}
-    {{- if $.core.manager.metrics.diagnosticsAddress }}
-      diagnosticsAddress: {{- $.core.manager.metrics.diagnosticsAddress }}
+    {{- if $core.manager.metrics.diagnosticsAddress }}
+      diagnosticsAddress: {{- $core.manager.metrics.diagnosticsAddress }}
     {{- end }}
   {{- end }}
 {{- end }}
