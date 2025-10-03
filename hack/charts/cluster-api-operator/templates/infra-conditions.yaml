@@ -69,7 +69,7 @@ spec:
       {{ $key }}: {{ $value }}
     {{- end }}
   {{- end }}
-  {{- if $$.Values.controlPlane.kubeadm.manager.metrics }}
+  {{- if $.Values.controlPlane.kubeadm.manager.metrics }}
     metrics:
     {{- if $.Values.controlPlane.kubeadm.manager.metrics.insecureDiagnostics }}
       insecureDiagnostics: {{- $.Values.controlPlane.kubeadm.manager.metrics.insecureDiagnostics }}
