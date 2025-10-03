@@ -28,7 +28,7 @@ metadata:
     "helm.sh/hook-weight": "2"
     {{- end }}
     "argocd.argoproj.io/sync-wave": "2"
-{{- if or $coreVersion $.Values.configSecret.name $.Values.manager (($core).configSecret).name }}
+{{- if or $coreVersion $.Values.configSecret.name $core.manager (($core).configSecret).name }}
 spec:
 {{- end}}
 {{- if $coreVersion }}

@@ -28,7 +28,7 @@ metadata:
     "helm.sh/hook-weight": "2"
     {{- end }}
     "argocd.argoproj.io/sync-wave": "2"
-{{- if or $ipamVersion $.Values.configSecret.name $.Values.manager $.Values.additionalDeployments (($ipam).configSecret).name }}
+{{- if or $ipamVersion $.Values.configSecret.name $ipam.manager $.Values.additionalDeployments (($ipam).configSecret).name }}
 spec:
 {{- end }}
 {{- if $ipamVersion }}
